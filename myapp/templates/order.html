@@ -1,0 +1,131 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Order</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Order</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Order</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Order</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <h2 style="text-align: center;color:black;">{% for msg in messages %}
+    {{msg}}
+    {% endfor %}</h2> 
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in oid %}
+                                <tr>
+                                    <td class="align-middle"><img src="{{ i.image.url }}" alt="" style="width: 50px;">{{ i.name }}</td>
+                                    <td class="align-middle">&#8377;{{ i.price }}</td>
+                                    <td class="align-middle">{{i.quantity}}</td>
+                                    <td class="align-middle">&#8377;{{ i.total_price }}</td>
+                                    <td >{{ i.time }}</td>
+                                    <!-- <td class="align-middle">
+                                        <a href="{% url 'cart_remove' i.id %}" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-times"></i>
+                                        </a>
+                                    </td> -->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        
+                    </div>
+
+            {% comment %} <div class="row my-5">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="coupon-box">
+                        <form class="mb-5" action="{% url 'apply_coupon' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" type="text" name="code" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
+                                <div class="input-group-append">
+                                    <button class="btn btn-theme" type="submit">Apply Coupon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> {% endcomment %}
+                {% comment %} <div class="col-lg-6 col-sm-6">
+                    <div class="update-box">
+                        <input value="Update Cart" type="submit">
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+            <div class="row my-5">
+                {% comment %} <div class="col-lg-8 col-sm-12"></div> {% endcomment %}
+                {% comment %} <div class="col-lg-4 col-sm-12">
+                    <div class="order-box">
+                        <h3>Order summary</h3>
+                        <div class="d-flex">
+                            <h4>Sub Total</h4>
+                            <div class="ml-auto font-weight-bold"> {{subtotal}}</div>
+                        </div>
+                        
+                        <hr class="my-1">
+                        <div class="d-flex">
+                            <h4>Coupon Discount</h4>
+                            <div class="ml-auto font-weight-bold"> {{discount}} </div>
+                        </div>
+                    
+                        <div class="d-flex">
+                            <h4>Shipping Cost</h4>
+                            <div class="ml-auto font-weight-bold"> {{Shipping}} </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex gr-total">
+                            <h5>Grand Total</h5>
+                            <div class="ml-auto h5"> {{total}} </div>
+                        </div>
+                        <hr> </div>
+                </div>
+                <div class="col-12 d-flex shopping-box"><a href="{% url 'checkout' %}" class="ml-auto btn hvr-hover">Checkout</a> </div>
+            </div> {% endcomment %}
+
+        {% comment %} </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+
+    <!-- End Cart -->
+
+{% endblock %}
